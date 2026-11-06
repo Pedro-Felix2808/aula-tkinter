@@ -2,7 +2,7 @@ import tkinter as tk
 from PIL import Image, ImageTk
 from pathlib import Path
 
-# Criando a janela
+
 janela = tk.Tk()
 janela.title("Sistema Médico - Login")
 janela.geometry("900x550")
@@ -39,7 +39,7 @@ label_logo = tk.Label(
 )
 label_logo.pack(pady=(0, 30))
 
-# CAMPO EMAIL
+
 campo_email = tk.Entry(
     frame_login,
     font=("Arial", 14),
@@ -64,7 +64,7 @@ def sair_email(event):
 campo_email.bind("<FocusIn>", entrar_email)
 campo_email.bind("<FocusOut>", sair_email)
 
-# CAMPO SENHA
+
 campo_senha = tk.Entry(
     frame_login,
     font=("Arial", 14),
