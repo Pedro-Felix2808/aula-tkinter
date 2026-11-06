@@ -2,17 +2,16 @@ import tkinter as tk
 from PIL import Image, ImageTk
 from pathlib import Path
 
-
 janela = tk.Tk()
-janela.title("Minha Interface")
-janela.geometry("900x550")
+janela.title("Doctor - Home")
+janela.geometry("1200x700")
 janela.configure(bg="white")
+
 
 pasta = Path(__file__).parent
 
-
 imagem1 = Image.open(pasta / "top.png")
-imagem1.thumbnail((200, 150))
+imagem1.thumbnail((350, 120))
 foto1 = ImageTk.PhotoImage(imagem1)
 
 label1 = tk.Label(
@@ -20,11 +19,14 @@ label1 = tk.Label(
     image=foto1,
     bg="white"
 )
-label1.pack(pady=10)
 
+label1.place(
+    x=40,
+    y=30
+)
 
 imagem2 = Image.open(pasta / "meio.png")
-imagem2.thumbnail((150, 150))
+imagem2.thumbnail((650, 300))
 foto2 = ImageTk.PhotoImage(imagem2)
 
 label2 = tk.Label(
@@ -32,8 +34,12 @@ label2 = tk.Label(
     image=foto2,
     bg="white"
 )
-label2.pack(pady=10)
 
+label2.place(
+    relx=0.5,
+    rely=0.5,
+    anchor="center"
+)
 
 imagem3 = Image.open(pasta / "logo.png")
 imagem3.thumbnail((100, 100))
@@ -44,6 +50,26 @@ label3 = tk.Label(
     image=foto3,
     bg="white"
 )
-label3.pack(pady=10)
+
+label3.place(
+    relx=0.95,
+    y=30,
+    anchor="ne"
+)
+
+
+ajuda = tk.Label(
+    janela,
+    text="PRECISA DE AJUDA? 😟",
+    font=("Arial", 20, "bold"),
+    bg="white",
+    fg="#298FC2"
+)
+
+ajuda.place(
+    relx=0.5,
+    rely=0.85,
+    anchor="center"
+)
 
 janela.mainloop()
