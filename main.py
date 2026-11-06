@@ -57,5 +57,30 @@ def ao_sair(event):
 campo_email.bind("<FocusIn>", ao_clicar)
 campo_email.bind("<FocusOut>", ao_sair)
 
+campo_senha = tk.Entry(
+    janela,
+    font=("Arial", 14),
+    width=35,
+    bg="#F0ECEC",
+    fg="gray"
+)
+campo_senha.insert(0, "Senha")
+campo_senha.pack(pady=10)
+
+def entrar_senha(event):
+    if campo_senha.get() == "Senha":
+        campo_senha.delete(0, tk.END)
+        campo_senha.config(fg="black", show="*")
+
+def sair_senha(event):
+    if campo_senha.get() == "":
+        campo_senha.config(show="")
+        campo_senha.insert(0, "Senha")
+        campo_senha.config(fg="gray")
+
+campo_senha.bind("<FocusIn>", entrar_senha)
+campo_senha.bind("<FocusOut>", sair_senha)
+
+
 janela.mainloop()
 
