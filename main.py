@@ -81,6 +81,18 @@ def sair_senha(event):
 campo_senha.bind("<FocusIn>", entrar_senha)
 campo_senha.bind("<FocusOut>", sair_senha)
 
+# Botão ACESSAR apenas visual
+botao_acessar = tk.Label(
+    janela,
+    text="ACESSAR",
+    font=("Arial", 12, "bold"),
+    bg="#298FC2",
+    fg="white",
+    width=35,
+    pady=10
+)
+
+botao_acessar.pack(pady=15)
 
 janela.mainloop()
 
