@@ -1,9 +1,9 @@
 import tkinter as tk
 
 janela = tk.Tk()
-janela.title("Teste Tkinter")
-janela.geometry("1920x1080")
 
-print("A janela foi criada!")
+janela.title("Sistema Médico - Login")
+janela.geometry("900x550")
+janela.configure(bg="white")
 
 janela.mainloop()
