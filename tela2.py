@@ -1,5 +1,7 @@
 
 import tkinter as tk
+from PIL import Image, ImageTk
+from pathlib import Path
 
 AZUL = "#298FC2"
 AZUL_CLARO = "#99D8F7"
@@ -20,39 +22,23 @@ pagina.place(
     anchor="center"
 )
 
-avatar = tk.Canvas(
+caminho = Path(__file__).parent / "perfil.png"
+
+imagem_perfil = Image.open(caminho)
+
+imagem_perfil.thumbnail((90, 90))
+
+foto_perfil = ImageTk.PhotoImage(imagem_perfil)
+
+label_perfil = tk.Label(
     pagina,
-    width=80,
-    height=80,
-    bg=FUNDO,
-    highlightthickness=0
-)
-avatar.place(x=50, y=35)
-
-avatar.create_oval(
-    5, 5, 75, 75,
-    fill=AZUL_CLARO,
-    outline=AZUL,
-    width=2
+    image=foto_perfil,
+    bg="white"
 )
 
-
-avatar.create_oval(
-    28, 18, 52, 47,
-    fill="white",
-    outline=AZUL_ESCURO,
-    width=2
-)
-
-
-avatar.create_arc(
-    18, 40, 62, 83,
-    start=0,
-    extent=180,
-    style="pieslice",
-    fill="#DDF2FF",
-    outline=AZUL_ESCURO,
-    width=2
+label_perfil.place(
+    x=50,
+    y=35
 )
 
 
@@ -68,46 +54,49 @@ boas_vindas = tk.Label(
 boas_vindas.place(x=150, y=48)
 
 
-sino = tk.Canvas(
+
+
+caminho_sino = Path(__file__).parent / "sino.png"
+
+imagem_sino = Image.open(caminho_sino)
+
+imagem_sino.thumbnail((50, 60))
+
+foto_sino = ImageTk.PhotoImage(imagem_sino)
+
+label_sino = tk.Label(
     pagina,
-    width=50,
-    height=60,
-    bg=FUNDO,
-    highlightthickness=0
-)
-sino.place(x=365, y=45)
-
-sino.create_arc(
-    10, 10, 40, 45,
-    start=0,
-    extent=180,
-    style="pieslice",
-    fill="#DDF2FF",
-    outline=AZUL_ESCURO,
-    width=2
+    image=foto_sino,
+    bg="white"
 )
 
-sino.create_line(
-    10, 25, 10, 43, 40, 43, 40, 25,
-    fill=AZUL_ESCURO,
-    width=2
-)
-
-sino.create_oval(
-    22, 43, 28, 49,
-    fill=AZUL_ESCURO,
-    outline=AZUL_ESCURO
+label_sino.place(
+    x=365,
+    y=45
 )
 
 
-logo = tk.Label(
+
+caminho_logo = Path(__file__).parent / "logo.png"
+
+imagem_logo = Image.open(caminho_logo)
+
+imagem_logo.thumbnail((100, 100))
+
+foto_logo = ImageTk.PhotoImage(imagem_logo)
+
+label_logo = tk.Label(
     pagina,
-    text="a+",
-    font=("Arial", 32, "bold"),
-    bg=FUNDO,
-    fg=AZUL
+    image=foto_logo,
+    bg="white"
 )
-logo.place(relx=0.94, y=40, anchor="ne")
+
+label_logo.place(
+    relx=0.94,
+    y=40,
+    anchor="ne"
+)
+
 
 
 frame_centro = tk.Frame(
@@ -137,8 +126,22 @@ frame_cartoes = tk.Frame(
 )
 frame_cartoes.pack()
 
-def criar_cartao(pai, nome, tipo):
 
+
+pasta = Path(__file__).parent
+
+# IMAGEM DO SÍMBOLO DE PACIENTE
+imagem_paciente = Image.open(pasta / "paciente.png")
+imagem_paciente.thumbnail((110, 105))
+foto_paciente = ImageTk.PhotoImage(imagem_paciente)
+
+imagem_calendario = Image.open(pasta / "calendario.png")
+imagem_calendario.thumbnail((110, 105))
+foto_calendario = ImageTk.PhotoImage(imagem_calendario)
+
+
+
+def criar_cartao(pai, nome, tipo):
     cartao = tk.Frame(
         pai,
         bg=AZUL_CLARO,
@@ -146,65 +149,25 @@ def criar_cartao(pai, nome, tipo):
         height=190
     )
 
-    cartao.pack(
-        side="left",
-        padx=18
-    )
-
+    cartao.pack(side="left", padx=18)
     cartao.pack_propagate(False)
 
-    desenho = tk.Canvas(
-        cartao,
-        width=110,
-        height=105,
-        bg=AZUL_CLARO,
-        highlightthickness=0
-    )
-    desenho.pack(pady=(20, 5))
-
     if tipo == "medico":
-
-        desenho.create_oval(
-            40, 15, 70, 55,
-            fill="white",
-            outline=AZUL_ESCURO,
-            width=3
+        simbolo = tk.Label(
+            cartao,
+            image=foto_paciente,
+            bg=AZUL_CLARO
         )
+        simbolo.pack(pady=(20, 5))
 
-     
-        desenho.create_arc(
-            20, 55, 90, 110,
-            start=0,
-            extent=180,
-            style="pieslice",
-            fill="#DDF2FF",
-            outline=AZUL_ESCURO,
-            width=3
+    elif tipo == "calendario":
+        simbolo = tk.Label(
+            cartao,
+            image=foto_calendario,
+            bg=AZUL_CLARO
         )
+        simbolo.pack(pady=(20, 5))
 
-    else:
-
-        desenho.create_rectangle(
-            25, 12, 85, 85,
-            fill="white",
-            outline=AZUL_ESCURO,
-            width=3
-        )
-
-        desenho.create_line(
-            25, 25, 85, 25,
-            fill=AZUL_ESCURO,
-            width=3
-        )
-
-        desenho.create_text(
-            55, 55,
-            text="12",
-            font=("Arial", 25),
-            fill=AZUL_ESCURO
-        )
-
-   
     texto = tk.Label(
         cartao,
         text=nome,
@@ -213,7 +176,6 @@ def criar_cartao(pai, nome, tipo):
         fg="white"
     )
     texto.pack(pady=5)
-
 
 criar_cartao(frame_cartoes, "PACIENTES", "medico")
 criar_cartao(frame_cartoes, "PALESTRAS", "calendario")
