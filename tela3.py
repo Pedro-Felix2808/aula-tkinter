@@ -78,7 +78,7 @@ label_logo.pack(side="right")
 frame_titulo = tk.Frame(janela, bg=FUNDO)
 frame_titulo.pack(fill="x", padx=80, pady=(20, 25))
 
-# Texto Voltar apenas visual
+
 voltar = tk.Label(
     frame_titulo,
     text="←  Voltar",
@@ -98,11 +98,8 @@ titulo = tk.Label(
 )
 titulo.pack()
 
-# ===================================
-# TABELA
-# ===================================
 
-# Frame que contém a tabela
+
 frame_tabela = tk.Frame(
     janela,
     bg=FUNDO
@@ -113,7 +110,6 @@ frame_tabela.pack(
     pady=(10, 0)
 )
 
-# Configuração das cinco colunas
 for coluna in range(5):
     frame_tabela.grid_columnconfigure(
         coluna,
@@ -121,7 +117,7 @@ for coluna in range(5):
         uniform="colunas"
     )
 
-# Nomes das colunas
+
 colunas = [
     "Palestra",
     "Data",
@@ -130,7 +126,7 @@ colunas = [
     "Duração"
 ]
 
-# Criando o cabeçalho da tabela
+
 for indice, nome in enumerate(colunas):
 
     cabecalho = tk.Label(
@@ -148,7 +144,7 @@ for indice, nome in enumerate(colunas):
         sticky="nsew"
     )
 
-# Dados de exemplo
+
 dados = [
     ["Lorem", "Lorem", "Lorem", "Lorem", "Lorem"],
     ["Lorem", "Lorem", "Lorem", "Lorem", "Lorem"],
@@ -160,16 +156,16 @@ dados = [
     ["Lorem", "Lorem", "Lorem", "Lorem", "Lorem"]
 ]
 
-# Criando as linhas da tabela
+
 for indice_linha, linha in enumerate(dados):
 
-    # Alternando a cor de fundo
+
     if indice_linha % 2 == 0:
         cor_linha = FUNDO
     else:
         cor_linha = CINZA_CLARO
 
-    # Criando cada célula
+
     for indice_coluna, valor in enumerate(linha):
 
         celula = tk.Label(
@@ -186,3 +182,33 @@ for indice_linha, linha in enumerate(dados):
             column=indice_coluna,
             sticky="nsew"
         )
+frame_paginas = tk.Frame(janela, bg=FUNDO)
+frame_paginas.pack(pady=20)
+
+for numero in range(1, 7):
+
+    if numero == 2:
+        fundo_numero = AZUL
+        cor_texto = "white"
+    else:
+        fundo_numero = FUNDO
+        cor_texto = AZUL
+
+    pagina_numero = tk.Label(
+        frame_paginas,
+        text=str(numero),
+        font=("Arial", 13, "bold"),
+        fg=cor_texto,
+        bg=fundo_numero,
+        width=2,
+        pady=3
+    )
+
+    pagina_numero.pack(
+        side="left",
+        padx=4
+    )
+
+
+
+janela.mainloop()
