@@ -148,3 +148,41 @@ for indice, nome in enumerate(colunas):
         sticky="nsew"
     )
 
+# Dados de exemplo
+dados = [
+    ["Lorem", "Lorem", "Lorem", "Lorem", "Lorem"],
+    ["Lorem", "Lorem", "Lorem", "Lorem", "Lorem"],
+    ["Lorem", "Lorem", "Lorem", "Lorem", "Lorem"],
+    ["Lorem", "Lorem", "Lorem", "Lorem", "Lorem"],
+    ["Lorem", "Lorem", "Lorem", "Lorem", "Lorem"],
+    ["Lorem", "Lorem", "Lorem", "Lorem", "Lorem"],
+    ["Lorem", "Lorem", "Lorem", "Lorem", "Lorem"],
+    ["Lorem", "Lorem", "Lorem", "Lorem", "Lorem"]
+]
+
+# Criando as linhas da tabela
+for indice_linha, linha in enumerate(dados):
+
+    # Alternando a cor de fundo
+    if indice_linha % 2 == 0:
+        cor_linha = FUNDO
+    else:
+        cor_linha = CINZA_CLARO
+
+    # Criando cada célula
+    for indice_coluna, valor in enumerate(linha):
+
+        celula = tk.Label(
+            frame_tabela,
+            text=valor,
+            font=("Arial", 13),
+            fg=AZUL,
+            bg=cor_linha,
+            pady=11
+        )
+
+        celula.grid(
+            row=indice_linha + 1,
+            column=indice_coluna,
+            sticky="nsew"
+        )
